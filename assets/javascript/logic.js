@@ -21,7 +21,7 @@ function countDown() {
     else if (n <= 0) {
         // alert shows how many correct, and how many incorrect
         alert("Times Up!\n Correct Guesses: " + correct + "\n Incorrect: " + (questionArr.length - correct))
-
+        
     }
     $(".timecount").html(n)
 
@@ -46,7 +46,7 @@ function initQuestions() {
 
 
     for (var i = 0; i < questionArr.length; i++) {
-        $("#form1").append("<div id='Questfill'>" + questionArr[i].question + "</div><input type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[0] + "'>" + questionArr[i].guesses[0] + "<input type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[1] + "'>" + questionArr[i].guesses[1] + "<input type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[2] + "'>" + questionArr[i].guesses[2] + "<input type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[3] + "'>" + questionArr[i].guesses[3] + "<br><hr>")
+        $("#form1").append("<div id='Questfill'>" + questionArr[i].question + "</div><input class='guesses' type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[0] + "'>" + questionArr[i].guesses[0] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[1] + "'>" + questionArr[i].guesses[1] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[2] + "'>" + questionArr[i].guesses[2] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[3] + "'>" + questionArr[i].guesses[3] + "<br><hr>")
 
 
         console.log(questionArr[i].question)
@@ -59,16 +59,13 @@ function initQuestions() {
     
     // radio selection below should track value of radio button selected
     // increases value of correct if right choice, otherwise adds 0 to correct
-    // **ERROR** current code only counts first choice, then doesnt continue to add
     
-    // 'change' removed before function
-        $('#form1 input').one('click',function () {
-    
-            console.log("response " + parseInt($('input:checked', "#form1").val()))
-            correct += parseInt($('input:checked', "#form1").val())
+        $('.guesses').on('click', function (event) {
+            var userChoice= $(event.target).val()
+            console.log("response " + $(event.target).val())
+            correct += parseInt($(event.target).val())
             console.log("Correct value: " + correct)
-            
-        
+ 
         })
 
 
@@ -88,7 +85,7 @@ var questionArr = [
     {
         question: "What planet is Anakin Skywalker From?",
         guesses: [" Naboo ", " Alderraan ", " Tatooine ", " Endor "],
-        answer: [0, 1, 0, 0]
+        answer: [0, 0, 1, 0]
     },
     {
         question: "How did Padme Die?",
@@ -99,6 +96,22 @@ var questionArr = [
         question: "What was the power that Anakin was trying to learn from Senator Palpatine?",
         guesses: [" The power of Electric Shock ", " The Power of Eternal Life ", " Teleportation ", " Power of Flight "],
         answer: [0, 1, 0, 0]
-    }
+    },
+    {
+        question: "How Many Star Wars Episode Movies are there Currently?",
+        guesses: [" 10 ", " 7 ", " 6 ", " 3 "],
+        answer: [0, 1, 0, 0]
+    },
+    {
+        question: "Who is Darth Maul's Master?",
+        guesses: [" Darth Sidious ", " Senator Palpatine ", " General Grievous ", " Darth Vader "],
+        answer: [1, 0, 0, 0]
+    },
+    {
+        question: "Who is the genetic Template for the Clone Troopers?",
+        guesses: [" Obi-Wan Kenobi ", " Boba Fett ", " Count Dooku ", " Jango Fett "],
+        answer: [0, 0, 0, 1]
+    },
+
 
 ]
