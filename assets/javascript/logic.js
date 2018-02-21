@@ -56,18 +56,21 @@ function initQuestions() {
         console.log("answers" + questionArr[i].answer)
 
     }
-
+    
     // radio selection below should track value of radio button selected
     // increases value of correct if right choice, otherwise adds 0 to correct
     // **ERROR** current code only counts first choice, then doesnt continue to add
-    $('#form1 input').on('change', function () {
+    
+    // 'change' removed before function
+        $('#form1 input').one('click',function () {
+    
+            console.log("response " + parseInt($('input:checked', "#form1").val()))
+            correct += parseInt($('input:checked', "#form1").val())
+            console.log("Correct value: " + correct)
+            
+        
+        })
 
-        console.log("response " + parseInt($('input:checked', "#form1").val()))
-        correct += parseInt($('input:checked', "#form1").val())
-        console.log("Correct value" + correct)
-
-
-    })
 
 }
 
