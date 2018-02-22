@@ -20,7 +20,7 @@ function countDown() {
     }
     else if (n <= 0) {
         // alert shows how many correct, and how many incorrect
-        alert("Times Up!\n Correct Guesses: " + correct + "\n Incorrect: " + (questionArr.length - correct))
+        alert("Times Up!\n Correct Guesses: " + correct + "\n Incorrect: " + (questionArr.length - correct) + "\n Refresh Page to Begin New Game!")
         
     }
     $(".timecount").html(n)
