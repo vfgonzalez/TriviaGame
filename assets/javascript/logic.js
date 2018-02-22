@@ -46,14 +46,19 @@ function initQuestions() {
 
 
     for (var i = 0; i < questionArr.length; i++) {
-        $("#form1").append("<div id='Questfill'>" + questionArr[i].question + "</div><input class='guesses' type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[0] + "'>" + questionArr[i].guesses[0] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[1] + "'>" + questionArr[i].guesses[1] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[2] + "'>" + questionArr[i].guesses[2] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[3] + "'>" + questionArr[i].guesses[3] + "<br><hr>")
+        $("#form1").append("<div id='Questfill'>" + questionArr[i].question +
+         "</div><input class='guesses' type='radio' name='radio" + [i] + "' value='" 
+         + questionArr[i].answer[0] + "'>" + questionArr[i].guesses[0] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" 
+         + questionArr[i].answer[1] + "'>" + questionArr[i].guesses[1] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[2] + "'>"
+         + questionArr[i].guesses[2] + "<input class='guesses'  type='radio' name='radio" + [i] + "' value='" + questionArr[i].answer[3] + "'>" 
+         + questionArr[i].guesses[3] + "<br><hr>")
 
 
-        console.log(questionArr[i].question)
+        // console.log(questionArr[i].question)
 
-        console.log('radio' + [i] + '')
-        console.log(questionArr[i].guesses)
-        console.log("answers" + questionArr[i].answer)
+        // console.log('radio' + [i] + '')
+        // console.log(questionArr[i].guesses)
+        // console.log("answers" + questionArr[i].answer)
 
     }
     
@@ -67,6 +72,17 @@ function initQuestions() {
             console.log("Correct value: " + correct)
  
         })
+
+        $(":radio").click(function(){
+            var radioName = $(this).attr("name"); //Get radio name
+            console.log(radioName) //radio0
+            // questionArr[somenumberIndex].answer
+
+            // indexOfAnswer = 0  ** try and find match of selection to value
+            // questionArr[indexOfAnswer].guesses
+
+            $(":radio[name='"+ radioName+"']").attr("disabled", true); //Disable all with the same name
+         });
 
 
 }
