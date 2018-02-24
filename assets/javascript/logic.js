@@ -11,6 +11,13 @@ var correct = 0
 // Timer Countdown, begins at count
 var n = 35
 
+// Imperial March while questions are being guessed
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "./assets/images/march.mp3");
+// Darth vader voice after time's up
+var power = document.createElement("audio");
+power.setAttribute("src", "./assets/images/power.mp3");
+
 
 
 function countDown() {
@@ -18,11 +25,13 @@ function countDown() {
     if (n > 0) {
         setTimeout(countDown, 1000);
     }
-    else if (n <= 0) {
+    else if (n < 1) {
         // alert shows how many correct, and how many incorrect
+        audioElement.pause()
         alert("Times Up!\n Correct Guesses: " + correct + "\n Incorrect: " + (questionArr.length - correct) + "\n Refresh Page to Begin New Game!")
-        
+        power.play()
     }
+   
     $(".timecount").html(n)
 
 }
@@ -36,6 +45,7 @@ $(".begin-btn").on("click", function () {
     countDown();
 
     $(this).hide()
+    audioElement.play()
 
 
 
@@ -54,11 +64,7 @@ function initQuestions() {
          + questionArr[i].guesses[3] + "<br><hr>")
 
 
-        // console.log(questionArr[i].question)
-
-        // console.log('radio' + [i] + '')
-        // console.log(questionArr[i].guesses)
-        // console.log("answers" + questionArr[i].answer)
+        
 
     }
     
@@ -76,10 +82,7 @@ function initQuestions() {
         $(":radio").click(function(){
             var radioName = $(this).attr("name"); //Get radio name
             console.log(radioName) //radio0
-            // questionArr[somenumberIndex].answer
-
-            // indexOfAnswer = 0  ** try and find match of selection to value
-            // questionArr[indexOfAnswer].guesses
+            
 
             $(":radio[name='"+ radioName+"']").attr("disabled", true); //Disable all with the same name
          });
@@ -115,8 +118,8 @@ var questionArr = [
     },
     {
         question: "How Many Star Wars Episode Movies are there Currently?",
-        guesses: [" 10 ", " 7 ", " 6 ", " 3 "],
-        answer: [0, 1, 0, 0]
+        guesses: [" 10 ", " 7 ", " 6 ", " 8 "],
+        answer: [0, 0, 0, 1]
     },
     {
         question: "Who is Darth Maul's Master?",
@@ -127,6 +130,21 @@ var questionArr = [
         question: "Who is the genetic Template for the Clone Troopers?",
         guesses: [" Obi-Wan Kenobi ", " Boba Fett ", " Count Dooku ", " Jango Fett "],
         answer: [0, 0, 0, 1]
+    },
+    {
+        question: "Who Kills Jabba The Hutt?",
+        guesses: [" Han Solo ", " Lando Calrissian ", " Princess Leia ", " Luke Skywalker "],
+        answer: [0, 0, 1, 0]
+    },
+    {
+        question: "What substance is Han Solo frozen in?",
+        guesses: [" Kryptonite  ", " Thermite ", " Kyber Crystals ", " Carbonite "],
+        answer: [0, 0, 0, 1]
+    },
+    {
+        question: " 'Do or Do Not, There is No ... ?' ",
+        guesses: [" Try  ", " Maybe ", " Cry ", " Failing "],
+        answer: [1, 0, 0, 0]
     },
 
 
